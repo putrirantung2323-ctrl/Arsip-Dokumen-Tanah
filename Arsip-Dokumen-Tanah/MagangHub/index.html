@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arsip Dokumen Tanah | MSM TTN</title>
+  <link rel="icon" href="logo_msm.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <section id="login" class="login">
+    <div class="login-hero">
+      <span class="hero-logo"><img src="logo_msm.jpg" alt="Logo MSM TTN"></span>
+      <h2>Selamat Datang!</h2>
+      <span class="strip"></span>
+      <p class="lead">Sistem Arsip Dokumen Tanah</p>
+      <p class="sub">Kelola dan telusuri seluruh dokumen akuisisi lahan dalam sembilan prosedur, mulai dari permintaan lahan hingga sertifikasi tahunan.</p>
+    </div>
+    <form id="loginForm" class="login-card">
+      <img class="login-logo" src="logo_msm.jpg" alt="Logo MSM TTN">
+      <h1>Masuk</h1>
+      <p class="sub">Masukkan akun Anda untuk mengakses arsip.</p>
+      <input id="user" placeholder="Username" aria-label="Username" autocomplete="username" required>
+      <input id="pass" type="password" placeholder="Password" aria-label="Password" autocomplete="current-password" required>
+      <p id="loginErr" class="err" hidden>Username atau password salah.</p>
+      <button class="btn primary" type="submit">Masuk</button>
+      <p class="hint">Lupa password? Hubungi administrator.</p>
+    </form>
+  </section>
+
+  <!-- APLIKASI -->
+  <div id="app" hidden>
+    <aside class="side">
+      <div class="brand"><img src="logo_msm.jpg" alt="Logo MSM TTN"></div>
+      <p class="grp">MENU</p>
+      <nav>
+        <button data-nav="dashboard" data-ico="grid">Dashboard</button>
+        <button data-nav="arsip" data-ico="folder">Arsip Dokumen Tanah</button>
+        <button data-nav="dokumen" data-ico="file">Dokumen</button>
+        <button data-nav="laporan" data-ico="chart">Laporan Rekapan</button>
+      </nav>
+      <p class="grp">UMUM</p>
+      <button id="logout" class="logout" data-ico="out">Keluar</button>
+    </aside>
+    <div class="main">
+      <header class="top">
+        <form id="cariGlobal" class="search"><span data-ico="search"></span>
+          <input id="cariInput" type="search" placeholder="Cari dokumen (judul, nomor, lahan)"></form>
+        <div class="user"><span id="avatar" class="avatar">A</span>
+          <div><b id="userNama">admin</b><small>Pengguna</small></div></div>
+      </header>
+      <main id="content"></main>
+    </div>
+  </div>
+
+  <!-- PREVIEW DOKUMEN -->
+  <dialog id="preview">
+    <div class="dlg-head"><h3 id="pvTitle"></h3><button class="btn" id="pvClose">Tutup</button></div>
+    <div id="pvBody"></div>
+    <div class="dlg-foot"><button class="btn primary" id="pvDownload" data-a="unduh">Unduh dokumen</button></div>
+  </dialog>
+
+  <!-- DETAIL DOKUMEN -->
+  <dialog id="detail">
+    <div class="dlg-head"><h3 id="dtTitle"></h3><button class="btn" id="dtClose">Tutup</button></div>
+    <div id="dtBody"></div>
+    <div class="dlg-foot" id="dtAksi"></div>
+  </dialog>
+
+  <!-- TAMBAH / EDIT DOKUMEN -->
+  <dialog id="form">
+    <form id="formDok">
+      <div class="dlg-head"><h3 id="fTitle"></h3><button type="button" class="btn" id="fBatal">Batal</button></div>
+      <div class="fields">
+        <label>Lahan <select id="fLahan" required></select></label>
+        <label>Prosedur dokumen <select id="fTahap" required></select></label>
+        <label>Judul dokumen <input id="fJudul" required></label>
+        <label>Nomor dokumen <input id="fNomor"></label>
+        <label>Tanggal dokumen <input id="fTanggal" type="date" required></label>
+        <label>Keterangan <textarea id="fKet" rows="2"></textarea></label>
+        <label>File (PDF, DOCX, XLSX, JPG, PNG; maks. 2 MB)
+          <input id="fFile" type="file" accept=".pdf,.docx,.xlsx,.jpg,.jpeg,.png">
+          <small id="fFileInfo" class="muted"></small>
+        </label>
+        <p id="fErr" class="err" hidden></p>
+      </div>
+      <div class="dlg-foot"><button class="btn primary" type="submit">Simpan dokumen</button></div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
